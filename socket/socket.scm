@@ -40,9 +40,7 @@
 						; Remove any trailing \r\n 
 						(set! speech-txt (string-trim-right speech-txt #\newline))
 						(set! speech-txt (string-trim-right speech-txt #\return))
-						(set! speech-txt (string-trim-both speech-txt #\tab))
-						(set! speech-txt (string-trim-both speech-txt #\space))
-
+						(set! speech-txt (string-trim-both speech-txt))
 
 						; Finally give txt to Ghost
 						(if (string-null? speech-txt)
