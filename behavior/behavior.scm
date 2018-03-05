@@ -10,6 +10,7 @@
 	(opencog nlp )
 	(opencog ghost))
 
+
 ;; ---------------------------------------------
 ;; Define functions used by the rules
 (load "functions.scm")
@@ -38,8 +39,6 @@
 
 (load "interaction-rules.scm")
 
-
-
 ;; ------------------------------------------------
 ;; Add testing functions
 ;; The functions are used to simulate the occurence of events for testing.
@@ -47,5 +46,10 @@
 (load "test.scm")
 
 
+
 ;; Run ghost loop
 ;(ghost-run)
+
+
+;; Run dynamic psi
+;(psi-updater-run)

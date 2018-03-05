@@ -26,11 +26,8 @@ u: (~HI) [hi] [hello] [hey] ["how are you"] there!
 
 
 ### Multi-goaled rules
-# Issue: Multi-goaled rules apparently are giving synatx error
-# So first goal is commented out by adding a space after #
 
-# goal: (please_user=0.2)
-#goal: (curiosity=0.7)
+#goal: (curiosity=0.7 please_user=0.2)
 ?: (what be you name) my name is "Dr. Roboto"
 
 
@@ -104,3 +101,10 @@ u: (!hate I *1 meat) Is meat good for you?
 #t: I like swimming in the ocean.
 
 #t: I often go to the beach to swim.
+
+
+### Rule Level topic
+### Demonstrates also topic feature 'keep' which makes the action selector repeatedly use this rule
+
+topic: ~NONSPEECH keep [] #goal: (responsiveness=0.8)
+u: (inner msg face is detected) I see your face!
