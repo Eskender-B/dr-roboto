@@ -13,14 +13,14 @@
 
 ;; ---------------------------------------------
 ;; Define functions used by the rules
-(load "functions.scm")
+(include "functions.scm")
 
 
 ;; ----------------------------------------------
 ;; Parse ghost topic files. 
 ;; Ghost rules handle speech interactions.
 
-(ghost-parse-file "test.top")
+(ghost-parse-file (string-append TOPDIR "behavior/" "test.top"))
 
 
 ;; ----------------------------------------------
@@ -30,26 +30,26 @@
 ;; The interaction rules can then in turn cause ghost rules to trigger speech output
 ;; or cause some other function to execute.
 
-(load "events.scm")
+(include "events.scm")
 
 
 ;; ----------------------------------------------
 ;; Add dynamic interaction rules.
 ;; Interaction rules mainly handle non-speech triggered response.
 
-(load "interaction-rules.scm")
+(include "interaction-rules.scm")
 
 ;; ------------------------------------------------
 ;; Add testing functions
 ;; The functions are used to simulate the occurence of events for testing.
 
-(load "test.scm")
+(include "test.scm")
 
 
 
 ;; Run ghost loop
-;(ghost-run)
+(ghost-run)
 
 
 ;; Run dynamic psi
-;(psi-updater-run)
+(psi-updater-run)
