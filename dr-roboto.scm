@@ -11,6 +11,8 @@
 	))
 )
 
+;; Load C++ detectors
+(include "detectors/detectors.scm")
 
 ;; Load behavior script
 (include "behavior/behavior.scm")
