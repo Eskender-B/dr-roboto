@@ -36,7 +36,7 @@ SCM returning_func_wrapper(void)
  Initialization function that is first called when this library is loaded in scheme
 */
 
-void init_detectors(void)
+void init_in_module(void* data)
 {
 	// Global variables for communicating with the looping functions are defined here
 	scm_c_define("detector-name", scm_from_utf8_string("Dr. Roboto"));
@@ -47,4 +47,18 @@ void init_detectors(void)
 	// Register and bind C++ procedures for scheme
 	scm_c_define_gsubr("detector-looping-func", 0, 0, 0, (void*)looping_func_wrapper);
 	scm_c_define_gsubr("detector-returning-func", 0, 0, 0, (void*)returning_func_wrapper);
+}
+
+
+void* init_in_guile(void* data)
+{
+	scm_c_define_module("detectors", init_in_module, NULL);
+  	scm_c_use_module("detectors");
+	return NULL;
+
+}
+
+void init_detectors(void)
+{
+	scm_with_guile(init_in_guile, NULL);
 }

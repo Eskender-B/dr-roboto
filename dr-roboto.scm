@@ -11,8 +11,10 @@
 	))
 )
 
-;; Load C++ detectors
-(include "detectors/detectors.scm")
+;; Load C++ detectors module
+(add-to-load-path "detectors/")
+;(append %load-compiled-path (string-append TOPDIR "detectors/"))
+(use-modules (detectors))
 
 ;; Load behavior script
 (include "behavior/behavior.scm")

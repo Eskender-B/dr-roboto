@@ -1,3 +1,9 @@
+;;; --------------------------------------------
+;;; (Dr.Roboto detectors) module
+;;; -------------------------------------------
+
+
+
 ;;; This file loads the shared library containing c++ detector functions.
 ;;; The C++ functions are either returning or looping.
 ;;; The looping functions are started in a single thread for each and result is updated
@@ -12,8 +18,19 @@
 	;; For the other key-value pairs check each functions documentation
 
 
-(load-extension (string-append TOPDIR "detectors/libdetectors") "init_detectors") 
+(define-module (detectors)
+	#:export(
+			; From sample functions
+			detector-looping-func
+			detector-returning-func
+			detector-looping-func-hashT
+	
+		)
+)
 
+
+;(load-extension (string-append TOPDIR "detectors/libdetectors") "init_detectors") 
+(load-extension "libdetectors" "init_detectors")
 
 
 ;; Run looping detector functions in a single thread for each
