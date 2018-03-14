@@ -27,6 +27,10 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 
 ## Usage
 * Start relex server
+* Compile C++ detectors in source:
+	```
+	$ make
+	```
 * run [run.sh](run.sh) to run guile instance:
 
 	``` 
