@@ -108,3 +108,11 @@ u: (!hate I *1 meat) Is meat good for you?
 
 topic: ~NONSPEECH keep [] #goal: (responsiveness=0.8)
 u: (inner msg face is detected) I see your face!
+
+
+### Sample rule for demonstrating returning C++ detector function
+topic: ~DETECTOR_TEST keep [] #goal: (testing_goal=0.2)
+u: (returning detector function) Random returning number is ^func-returning-result
+
+topic: ~DETECTOR_TEST keep [] #goal: (testing_goal=0.2)
+u: (looping detector function) Random looping number is ^func-looping-result
