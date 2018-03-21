@@ -23,6 +23,8 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 ## Status
 
 * Currently basic layout and some simple functions and rules are implemented.
+* Scheme binding for C++ functions is implemented
+* Sample detector functions are also implemented alongside
 * As stories are added each topic may have its own set of files for ghost rules, interaction rules, events and so on ...
 
 ## Usage
@@ -48,7 +50,7 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 * At the moment you can see the result in the opened guile instance.
 
 ## To Do
-* Add detector c++ functions and bind them with scheme.
+* Add detector c++ functions 
 * Add a better testing module for effectively testing stories and rules regardless of the detectors.
 * May be write a better action selector for Ghost rules.
 * Add a lot of stories.
