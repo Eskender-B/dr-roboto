@@ -21,3 +21,9 @@
 
 ;; Load socket implementation script for STT and TTS
 (include "socket/socket.scm")
+
+(newline)
+(newline)
+(newline)
+(newline)
+(newline)

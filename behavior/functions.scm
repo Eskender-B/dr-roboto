@@ -15,6 +15,55 @@
 )
 
 
+; Functions with arguments
+(define-public (is-happy argWord)
+	(define thresh (string->number (cog-name argWord)))
+	(if (>= (/ (modulo (psi-loop-count (ghost-get-component)) 10) 10.0) thresh)
+		(stv 1 1)
+		(stv 0 1)
+	)
+)
+
+(DefineLink
+	(DefinedSchemaNode "is-happy")
+	(LambdaLink
+		(VariableList
+			(VariableNode "$X")
+		)
+		(EvaluationLink
+			(GroundedSchemaNode "scm: is-happy")
+			(ListLink
+				(VariableNode "$X")
+			)
+		)
+	)
+)
+
+; This function returns the negation of is-happy since ghost doesn't support negation on functions yet
+(define-public (neg-is-happy argWord)
+	(define thresh (string->number (cog-name argWord)))
+	(if (>= (/ (modulo (psi-loop-count (ghost-get-component)) 10) 10.0) thresh)
+		(stv 0 1)
+		(stv 1 1)
+	)
+)
+
+(DefineLink
+	(DefinedSchemaNode "neg-is-happy")
+	(LambdaLink
+		(VariableList
+			(VariableNode "$X")
+		)
+		(EvaluationLink
+			(GroundedSchemaNode "scm: neg-is-happy")
+			(ListLink
+				(VariableNode "$X")
+			)
+		)
+	)
+)
+
+
 ;; Functions for action part
 ;; Need to return word nodes in a listlink
 ;; They need also be grounded functions

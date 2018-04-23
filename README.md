@@ -19,6 +19,7 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 	* Functions/actions used by Ghost rules are found at [behavior/functions.scm](behavior/functions.scm).
 
 	* Testing functions are found at [behavior/test.scm](behavior/test.scm).
+	* Scheme-C++ binding and detector functions are found at [detectors/](detectors/)
 
 ## Status
 

@@ -81,6 +81,11 @@ u: ( roses < I like ) I like roses too
 u: ( * ^func-true) This always runs
 u: ( * ^func-false) This never runs
 
+# Functions with arguments
+topic: ~STATE keep [] u: (are you happy ^is-happy(.7)) Yes I am happy
+
+topic: ~STATE keep [] u: (are you happy ^neg-is-happy(.7)) No I am not happy
+
 ### Use of functions in actions
 # The functions are defined in functions.scm and return list of word nodes if need be
 u: (who killed the _*) I think ^func-findkiller killed the '_0
