@@ -27,6 +27,7 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 * Scheme binding for C++ functions is implemented
 * Sample detector functions are also implemented alongside
 * As stories are added each topic may have its own set of files for ghost rules, interaction rules, events and so on ...
+* Basic Scratch interface is implemented.
 
 ## Usage
 * Start relex server
@@ -55,7 +56,6 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 * Add a better testing module for effectively testing stories and rules regardless of the detectors.
 * May be write a better action selector for Ghost rules.
 * Add a lot of stories.
-* Interface with scratch.
 
 ## Dependency
 

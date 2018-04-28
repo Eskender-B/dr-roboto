@@ -22,6 +22,10 @@
 ;; Load socket implementation script for STT and TTS
 (include "socket/socket.scm")
 
+
+;; Load Scratch interface code
+(include "scratch/scratch.scm")
+
 (newline)
 (newline)
 (newline)
