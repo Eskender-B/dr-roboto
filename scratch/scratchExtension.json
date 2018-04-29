@@ -4,7 +4,7 @@
  	"blockSpecs": 
 [
 	["r", "Speech Output", "speechOutput"],
-	[" ", "Speech Input %s", "speechInput", ""],
-	[" ", "Ghost Rule", "ghostRule"]
+	[" ", "Speech Input %s", "speechInput", " "],
+	[" ", "Ghost Rule %s", "ghostRule"]
 ]
 }

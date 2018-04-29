@@ -1,5 +1,5 @@
-; This is a web server implementation for listening and responding to scratch request
-; Server runs on port 7777
+;;; This is a web server implementation for listening and responding to scratch request
+;;; Server runs on port 7777
 
 (use-modules (web server)
  	     (web request)
@@ -7,23 +7,45 @@
 	     (web uri))
 
 
-; Functons used by http handler implemented below
+;; Functons used by http handler implemented below
+
+; Input speech taking function
 (define (speech-input speech)
-	(ghost speech)
-	"okay" ;Http response
+
+	(set! speech (string-trim-both speech))
+
+	(if (not (string-null? speech))
+		(ghost speech)
+	)
+	"Ok" ;Http response
 )
 
+
+; Input rule taking function 
 (define (ghost-rule rule)
 
 	(ghost-parse rule)
-	"okay"	;HTTP response
+	"Ok"	;HTTP response
 )
 
+; Function for speech output
 (define (speech-output)
 	
-	(string-append "speechOutput " "Dummy output\n")
+	;(string-append "speechOutput " "Dummy output\n")
+
+	(define txt-str "")
+	(define result (ghost-get-result))
+	
+	(for-each (lambda(a)
+		(set! txt-str (string-trim (string-append txt-str " " (cog-name a))))
+		)
+		result
+	)
+
+	(string-append "speechOutput " txt-str "\n")
 )
 
+; Function for sending cross domain to scratch
 (define (send-cross-domain-policy)
 	(string-append "<cross-domain-policy>"
 				"<allow-access-from-domain=\"*\" to-ports=\"<7777>\"/>"
@@ -35,7 +57,7 @@
 ; Function that executes when scratch program starts (green flag clicked)
 ; Does nothing for the time being.
 (define (reset-all)
-	"okay"	
+	"Ok"	
 )
 
 
