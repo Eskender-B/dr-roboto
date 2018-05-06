@@ -20,7 +20,11 @@
 ; If face is detected set Ghost input to trigger speech output
 ; This is for the time being until Ghost is able to process non-speech input
 (define (consequent-face)
-	(ghost "inner msg face is detected")
+	; test-ghost is used for the time being
+	(test-ghost "inner msg face is detected")
+
+	; Return Meaningless atom	
+	(Concept "")
 )
 
 

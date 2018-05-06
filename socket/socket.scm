@@ -45,7 +45,9 @@
 						; Finally give txt to Ghost
 						(if (string-null? speech-txt)
 						    (begin (display "Empty string\n" client) (continue))
-						    (ghost speech-txt)
+						    
+						    ; test-ghost used for the time being 
+						    (test-ghost speech-txt)
 						)
 					    )
 					)

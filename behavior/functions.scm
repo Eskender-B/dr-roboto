@@ -24,21 +24,6 @@
 	)
 )
 
-(DefineLink
-	(DefinedSchemaNode "is-happy")
-	(LambdaLink
-		(VariableList
-			(VariableNode "$X")
-		)
-		(EvaluationLink
-			(GroundedSchemaNode "scm: is-happy")
-			(ListLink
-				(VariableNode "$X")
-			)
-		)
-	)
-)
-
 ; This function returns the negation of is-happy since ghost doesn't support negation on functions yet
 (define-public (neg-is-happy argWord)
 	(define thresh (string->number (cog-name argWord)))
@@ -48,23 +33,7 @@
 	)
 )
 
-(DefineLink
-	(DefinedSchemaNode "neg-is-happy")
-	(LambdaLink
-		(VariableList
-			(VariableNode "$X")
-		)
-		(EvaluationLink
-			(GroundedSchemaNode "scm: neg-is-happy")
-			(ListLink
-				(VariableNode "$X")
-			)
-		)
-	)
-)
-
-
-;; Functions for action part
+; Functions for action part
 ;; Need to return word nodes in a listlink
 ;; They need also be grounded functions
 
@@ -75,24 +44,11 @@
   ; The answer should be a list of nodes wrapped in a ListLink
   (List (Word "Bob") (Word "and") (Word "Alice")))
 
-
-(Define
-  (DefinedSchema "func-findkiller")
-  (Lambda (ExecutionOutput (GroundedSchema "scm: func-findkiller") (List))))
-
-
-
 ; Sample returning detector function
 (define-public (func-returning-result)
 	
 	(List (Word (number->string(detector-returning-func))))
 )
-
-(Define
-	(DefinedSchema "func-returning-result")
-	(Lambda (ExecutionOutput (GroundedSchema "scm: func-returning-result") (List)))
-)
-
 
 ; Sample looping detector function
 (define-public (func-looping-result)
@@ -104,7 +60,3 @@
 	)
 )
 
-(Define
-	(DefinedSchema "func-looping-result")
-	(Lambda (ExecutionOutput (GroundedSchema "scm: func-looping-result") (List)))
-)

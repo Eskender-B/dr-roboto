@@ -15,7 +15,9 @@
 	(set! speech (string-trim-both speech))
 
 	(if (not (string-null? speech))
-		(ghost speech)
+
+		; test-ghost is used for the time being
+		(test-ghost speech)
 	)
 	"Ok" ;Http response
 )
