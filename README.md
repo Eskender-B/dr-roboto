@@ -51,6 +51,11 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 	$ telnet localhost 5555
 	```
 * At the moment you can see the result in the opened guile instance.
+* Or you can see the speech output by listening on port 6666
+	
+	```
+	$ telnet localhost 6666
+	```
 
 ## To Do
 * Add detector c++ functions 
@@ -60,6 +65,6 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 
 ## Dependency
 
-* [OpenCog](https://github.com/opencog) (clone from Feb 26)
+* [OpenCog](https://github.com/opencog) (commit fa91510a72175408c59a74a38edb5d0e72c97678, May 6)
 * [Relex](https://github.com/opencog/relex)
 * [Guile 2.2](https://www.gnu.org/software/guile/download/)
