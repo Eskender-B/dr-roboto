@@ -1,55 +1,84 @@
 #### This file is used to try Ghost features. 
 #### It tries to cover every synatx and basic usage.
-#### The list of goals are: please_user curiosity stay_awake
+
+# Ghost Rules have the following format
+#	(pattern && action) ==> goal
+# That is if a pattern is matched action is then executed and the goal is said to be achieved.
+# A goal also has an urge to express the level of need to achieve that goal.
+# Rules are organized into topics.
+# Ghost action selector runs in a loop to select a single rule and execute it.
+# Rule is selected based on the following criteria:
+#	whether a pattern is matched or not
+#	the strength of the goal
+#	the urge of the goal
+#	importance of the rule (rules just selected are considered less important)
+#	whether a rule is in the current topic (priority is given)
 
 
-### Define some concepts
-concept: ~HI [hi hello hey "how are you"]
-concept: ~NAME [name]
+### Urge
+# Set initial urges for the goal.
+# By increasing the urge of a goal, one can increase the chance of rules containing the goal
+# to be selected by the action selector.
+urge: (please_user=1 introduction=1 curiosity=0.7 stay_awake=1)
+
+### Concept
+### Sequence enclosed in parenthesis
+# Concepts used to group similar words and phrases together
+concept: ~HI [hi hello hey (how be you)]
 
 
-### Set file level topic
-topic: ~TEST [~HI ~NAME]
+# Rules are organized into topics.
+# The topic definition here applies to all rules below until
+# the next topic definition.
+# The ff topic has 'keep' feature. It means all rules in this topic can be
+# considered by the action selector many times as oppossed to other rules
+# which are never reconsidered once they get executed. 
+topic: ~GREETING keep [~HI]
 
 
-### Set shared goals
-# If robot is engaged in a conversation, it makes sense for stay_awake goal to be satisfied a certian level
-goal: (stay_awake=0.1)
+
+# Top level goal shared by all rules under it until the next top level goal.
+goal: (stay_awake=0.7)
 
 
-### Responders u, s and ?
-### And Randomized output
-### Demonstrate rule level goals
+### Ghost rule with a kind, a label, a pattern, an action and a rule-level goal.
 
-#goal: (please_user=0.4)
-u: (~HI) [hi] [hello] [hey] ["how are you"] there!
+#goal: (introduction=0.6)
+?: (what be you) I am a robot
 
-
-### Multi-goaled rules
-
-#goal: (curiosity=0.7 please_user=0.2)
-?: (what be you name) my name is "Dr. Roboto"
+#goal: (introduction=0.7)
+?: (what be you name) My name is Dr. Roboto
 
 
-### Use of variables and user variables
-#goal: (please_user=0.5)
-u: (me name be _*) $name='_0 Hi '_0
 
-#goal: (please_user=0.8)
-u: (what be me name) your name is $name
+### Randomized output
+u: (~HI) [hi] [hello] [hey] [how are you] there
+
+
+### Gambits
+#goal: (curiosity=0.7)
+t: what is your name?
+
+### Match variable (start with _)
+### User variables (start with $)
+
+#goal: (please_user=0.6)
+u: (me name be _*) $name= '_0 Hi '_0
+
 
 ?: (do you eat _[meat fish chicken]) No, I hate _0
 ?: (do you use _*1 or _*1) I neither use _0 nor _1
 
+
+### Multi-goaled rule
+#goal: (please_user=0.8 introduction=0.5)
+u: (what be me name $name) Your name is $name
+
+
 ### Rejoinders
-# Test to see if this rule or the following rejoinder run when "I love you" and then "yes" is the input
-s: (yes) okay
-
-s: (I love you) do you really?
-	a: (yes) In that case I love you too
-	b: (no) It is okay. I have got plenty who love me
-
-
+u: (you hate human) no. you are very interesting. Do you hate robots?
+	a: (yes) I am sure you are going to like me though
+	a: (no) We will get along fine
 
 ### Choices
 ?: (you [swim ride fish ]) I do.
@@ -75,16 +104,19 @@ s: ( << I birds love >> ) I love birds too
 u: (what is an elephant > ) An elephant is a pachyderm
 u: ( roses < I like ) I like roses too
 
+### Negation
+u: (!hate I *1 meat) Is meat good for you?
+
+
 
 ### Use of functions in contexts
 # The functions are defined in functions.scm and return either (stv 0 1) or (stv 1 1) ==> (falase or true)
-u: ( * ^func-true) This always runs
+# u: ( * ^func-true) This always runs
 u: ( * ^func-false) This never runs
 
-# Functions with arguments
-topic: ~STATE keep [] u: (are you happy ^is-happy(.7)) Yes I am happy
-
-topic: ~STATE keep [] u: (are you happy ^neg-is-happy(.7)) No I am not happy
+### Functions with arguments
+u: (are you happy ^is-happy(.7)) Yes I am happy
+u: (are you happy ^neg-is-happy(.7)) No I am not happy
 
 ### Use of functions in actions
 # The functions are defined in functions.scm and return list of word nodes if need be
@@ -92,32 +124,24 @@ u: (who killed the _*) I think ^func-findkiller killed the '_0
 
 
 
-
-### Negation
-u: (!hate I *1 meat) Is meat good for you?
-
-### Gambits
-# Issue: Gambits seem to be executed first always even if there are matching responders (why commented) 
-# Issue: No ordering of r and t gambits
-# Issue: Once gambit started, all of them are exhuasted no matter the input
-
-#r: Do you like the ocean?
-
-#t: I like swimming in the ocean.
-
-#t: I often go to the beach to swim.
-
-
-### Rule Level topic
-### Demonstrates also topic feature 'keep' which makes the action selector repeatedly use this rule
-
-topic: ~NONSPEECH keep [] #goal: (responsiveness=0.8)
+### Sample rule for face detection
 u: (inner msg face is detected) I see your face!
 
 
-### Sample rule for demonstrating returning C++ detector function
-topic: ~DETECTOR_TEST keep [] #goal: (testing_goal=0.2)
-u: (returning detector function) Random returning number is ^func-returning-result
+### Sample rule for demonstrating returning and looping C++ detector functions
+#goal: (testing_goal=0.5)
+ u:(returning detector function) Random returning number is ^func-returning-result
 
-topic: ~DETECTOR_TEST keep [] #goal: (testing_goal=0.2)
+#goal: (testing_goal=0.5)
 u: (looping detector function) Random looping number is ^func-looping-result
+
+
+### Ordered Goal
+# Goal of next rules decrease in a geometric sequence with a factor 0.5 
+ordered-goal: (curiosity=0.8)
+
+u: (what be _*) please define '_0
+
+u: (why be _*) why not
+
+# and so on.. as there are more rules the geometric sum converges to 0.8 
