@@ -63,8 +63,13 @@ Dr. Roboto is an interacting little robot with personality centered around curio
 * May be write a better action selector for Ghost rules.
 * Add a lot of stories.
 
+
 ## Dependency
 
 * [OpenCog](https://github.com/opencog) (commit fa91510a72175408c59a74a38edb5d0e72c97678, May 6)
 * [Relex](https://github.com/opencog/relex)
 * [Guile 2.2](https://www.gnu.org/software/guile/download/)
+
+## Note
+* The project is migrated to [https://github.com/opencog/TinyCog/](https://github.com/opencog/TinyCog/)
+
